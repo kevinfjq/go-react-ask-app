@@ -140,7 +140,19 @@ func (h apiHandler) handleCreateRoom(w http.ResponseWriter, r *http.Request) {
 	}
 	h.sendJSON(w, response{Id: roomId.String()})
 }
-func (h apiHandler) handleGetRooms(w http.ResponseWriter, r *http.Request) {}
+func (h apiHandler) handleGetRooms(w http.ResponseWriter, r *http.Request) {
+	rooms, err := h.q.GetRooms(r.Context())
+	if err != nil {
+		slog.Error("failed to get  rooms", "error", err)
+		http.Error(w, "something went wrong", http.StatusInternalServerError)
+		return
+	}
+
+	if rooms == nil {
+		rooms = []pgstore.Room{}
+	}
+	h.sendJSON(w, rooms)
+}
 
 func (h apiHandler) handleCreateMessage(w http.ResponseWriter, r *http.Request) {
 	_, rawRoomId, roomId, ok := h.readRoom(w, r)
@@ -253,6 +265,7 @@ func (h apiHandler) handleRemoveReactFromMessage(w http.ResponseWriter, r *http.
 	if !ok {
 		return
 	}
+
 	rawMessageId := chi.URLParam(r, "message_id")
 	messageId, err := uuid.Parse(rawMessageId)
 	if err != nil {
