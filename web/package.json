@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.51.23",
+    "@tanstack/react-query": "^5.81.5",
     "lucide-react": "^0.427.0",
-    "react": "19.0.0-rc-2d2cc042-20240809",
-    "react-dom": "19.0.0-rc-2d2cc042-20240809",
-    "react-router-dom": "^6.26.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3",
     "sonner": "^1.5.0"
   },
   "devDependencies": {
@@ -34,6 +34,9 @@
     "vite": "^5.4.0"
   },
   "overrides": {
+    "@tanstack/react-query": {
+      "react": "$react"
+    },
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc"
   }

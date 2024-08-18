@@ -17,7 +17,7 @@ export function Room() {
       navigator.share({url})
     } else {
       navigator.clipboard.writeText(url)
-      toast.info("O link da sala foi copiada para  aárea de transerencia!")
+      toast.info("O link da sala foi copiada para a área de transferencia!")
     }
   }
   return (
