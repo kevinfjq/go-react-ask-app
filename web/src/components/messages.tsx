@@ -19,7 +19,7 @@ export function Messages() {
     <ol className="list-decimal list-outside px-3 space-y-8">
       {data.messages.map(message => {
         return (
-          <Message text={message.text} amountOfReactions={message.amountOfReactions} answered={message.answered} key={message.id}/>
+          <Message text={message.text} amountOfReactions={message.amountOfReactions} answered={message.answered} key={message.id} id={message.id}/>
         )
       })}
     </ol>
